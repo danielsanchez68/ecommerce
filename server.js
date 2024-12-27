@@ -7,6 +7,8 @@ class Server {
 
     start() {
         const app = express()
+        app.use(express.static('public')) // archivos estáticos en public
+
         app.use(express.json())
 
         // ---------------- Rutas / endpoints API RESTful ------------

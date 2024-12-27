@@ -7,14 +7,12 @@ class ModelMongoDB {
 
     obtenerProductos = async () => {
         if(!CnxMongoDB.connectionOK) throw new Error('DAO son conexión a MongoDB')
-        
         const productos = await CnxMongoDB.db.collection('productos').find({}).toArray()
         return productos
     }
     
     obtenerProducto = async id => {
         if(!CnxMongoDB.connectionOK) throw new Error('DAO son conexión a MongoDB')
-
         //const producto = await CnxMongoDB.db.collection('productos').findOne({_id: new ObjectId(id)})
         const producto = await CnxMongoDB.db.collection('productos').findOne({_id: ObjectId.createFromHexString(id)})
         return producto
